@@ -18,6 +18,10 @@ a {
     color: #000000;
 }
 
+img {
+    width: 50px;
+}
+
 .carousel-container {
     perspective: 1000px;
     display: flex;
