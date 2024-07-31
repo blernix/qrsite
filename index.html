@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Killian Lecrut</title>
     <link rel="stylesheet" href="index.css">
+    <!-- Twitter -->
+	<meta name="twitter:card" content="summary">
+	<meta name="twitter:site" content="https://2minaci.xyz">
+	<meta name="twitter:title" content="Killian Lecrut">
+	<meta name="twitter:description" content="Plateforme de création">
+	<meta name="twitter:image" content="assets/btc.png">
+
+	<!-- Open Graph meta -->
+	<meta property="og:title" content="Killian Lecrut">
+	<meta property="og:type" content="siteweb">
+	<meta property="og:url" content="https://2minaci.xyz">
+	<meta property="og:image" content="assets/btc.png">
+	<meta property="og:description" content="PLateforme de création">
+
 </head>
 <body>
     
     <div class="carousel-container">
         <div class="carousel">
-            <div class="carousel-item" data-type="btc">
-                <img src="assets/btc.png" alt="icone et copie adresse bitcoin">
-            </div>
-            <div class="carousel-item" data-type="eth">
-                <img src="assets/ether.png" alt="icone et copie adresse ether">
-            </div>
+            <div class="carousel-item"><a href="https://blernix.github.io/portk/" target="_blank">
+                <img src="assets/portoflio.png" alt="icone et lien instagram">
+            </a></div>
             <div class="carousel-item"><a href="https://www.instagram.com/lct_kiki/" target="_blank">
                 <img src="assets/insta.png" alt="icone et lien instagram">
             </a></div>
@@ -25,10 +36,22 @@
             <div class="carousel-item"><a href="https://www.paypal.com/paypalme/webcreater" target="_blank">
                 <img src="assets/paypal.png" alt="icone et lien paypal">
             </a></div>
+            <div class="carousel-item" data-type="btc">
+                <div class="copie">
+                <img src="assets/btc.png" alt="icone et copie adresse bitcoin">
+                <img class="icone_copie" src="assets/copie.png" alt="icone copié">
+            </div>
+            </div>
+            <div class="carousel-item" data-type="eth">
+                <div class="copie">
+                <img src="assets/ether.png" alt="icone et copie adresse ether">
+                <img class="icone_copie" src="assets/copie.png" alt="icone copié">
+            </div>
+            </div>
         </div>
     </div>
-    <p id="btcNotification" class="notification">Adresse BTC copiée dans le presse-papiers !</p>
-    <p id="ethNotification" class="notification">Adresse ETH copiée dans le presse-papiers !</p>
+    <p id="btcNotification" class="notification">Adresse BTC copiée !</p>
+    <p id="ethNotification" class="notification">Adresse ETH copiée !</p>
     <script src="script.js"></script>
 </body>
 </html>
