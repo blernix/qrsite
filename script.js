@@ -3,15 +3,14 @@ document.addEventListener('DOMContentLoaded', function () {
     let isDragging = false;
     let startX;
     let currentX;
-    let startTime;
-    let endTime;
     let rotation = 0;
+    const autoRotateSpeed = 0.2; // Speed of the auto-rotation
     let autoRotateInterval;
 
     function startAutoRotate() {
         console.log("Starting auto-rotate");
         autoRotateInterval = setInterval(() => {
-            rotation += 0.3;
+            rotation += autoRotateSpeed;
             carousel.style.transform = `rotateY(${rotation}deg)`;
         }, 20);
     }
@@ -21,29 +20,10 @@ document.addEventListener('DOMContentLoaded', function () {
         clearInterval(autoRotateInterval);
     }
 
-    function applyInertia(speed) {
-        if (isNaN(speed)) {
-            console.log("Invalid speed, skipping inertia");
-           // startAutoRotate();
-            return;
-        }
-        console.log("Applying inertia with speed:", speed);
-        const inertiaInterval = setInterval(() => {
-            speed *= 0.95;
-            rotation += speed;
-            carousel.style.transform = `rotateY(${rotation}deg)`;
-            if (Math.abs(speed) < 0.01) {
-                clearInterval(inertiaInterval);
-                startAutoRotate(); // Restart auto-rotation after inertia ends
-            }
-        }, 20);
-    }
-
     function onPointerDown(e) {
         console.log("Pointer down:", e);
         isDragging = true;
         startX = (e.pageX || e.touches[0].pageX) - carousel.offsetLeft;
-        startTime = Date.now();
         carousel.style.transition = 'none';
         stopAutoRotate();
     }
@@ -52,12 +32,7 @@ document.addEventListener('DOMContentLoaded', function () {
         console.log("Pointer up:", e);
         if (!isDragging) return;
         isDragging = false;
-        endTime = Date.now();
-        const timeDiff = endTime - startTime;
-        const distance = (e.pageX || e.changedTouches[0].pageX) - carousel.offsetLeft - startX;
-        const speed = distance / timeDiff;
-        console.log("Time diff:", timeDiff, "Distance:", distance, "Speed:", speed);
-        applyInertia(speed * 50);
+        startAutoRotate(); // Restart auto-rotation after dragging
         carousel.style.transition = 'transform 0.5s linear';
     }
 
@@ -89,15 +64,15 @@ document.addEventListener('DOMContentLoaded', function () {
     const ethAddress = 'votre-adresse-eth-ici';
 
     btcButton.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent the event from propagating
-        e.preventDefault(); // Empêche le comportement par défaut du clic
+        e.stopPropagation();
+        e.preventDefault();
         console.log("BTC button clicked");
         copyToClipboard(btcAddress, btcNotification);
     });
 
     ethButton.addEventListener('click', (e) => {
-        e.stopPropagation(); // Prevent the event from propagating
-        e.preventDefault(); // Empêche le comportement par défaut du clic
+        e.stopPropagation();
+        e.preventDefault();
         console.log("ETH button clicked");
         copyToClipboard(ethAddress, ethNotification);
     });
@@ -112,5 +87,5 @@ document.addEventListener('DOMContentLoaded', function () {
         });
     }
 
-    startAutoRotate(); // Commence la rotation automatique dès le chargement
+    startAutoRotate(); // Start the auto-rotation when the page loads
 });
